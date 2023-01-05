@@ -1,4 +1,4 @@
-name: federate test
+name: federate
 
 on:
   push:
